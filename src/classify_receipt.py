@@ -3,10 +3,6 @@ import torch.nn as nn
 from torchvision import transforms, models
 from PIL import Image
 
-# Config
-IMG_SIZE = 224
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CLASS_NAMES = ["Kbank", "NEXT", "SCB"]
 
 class ReceiptClassifier:
     
@@ -15,8 +11,8 @@ class ReceiptClassifier:
         self, 
         model_path: str,
         class_names: list[str],
-        img_size: int = IMG_SIZE,
-        device: torch.device = DEVICE
+        img_size: int,
+        device: torch.device,
     ):
         self.class_names = class_names
         self.device = device
