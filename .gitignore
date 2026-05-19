@@ -1,2 +1,5 @@
 model/
 venv/
+receipt/
+
+src/__pycache__/
