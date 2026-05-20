@@ -25,13 +25,15 @@ OCR-receipt/
 
 ### classify_receipt.py
 ```
-- Classify receipt by model receipt_model.pth
-- Check bank for break down the workflow   
+- Classify receipt bank by model receipt_model.pth
+
 ```
 
 ### receipt_read.py
 ```
-- Use model "craft_mlt_25k.pth" and "thai.pth" for read receipt after check Bank.
+- Use model "craft_mlt_25k.pth" and "thai.pth"
+- Read info of receipt.
+
 ```
 
 
