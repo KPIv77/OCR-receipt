@@ -29,15 +29,18 @@ class ReceiptRead:
         return value_row
     
     # Check bank
-    def bank_split(self, result: dict, img_path: str) -> str:
+    def bank_split(self,img_path: str) -> str:
+    
+        lst = self.read_img(img_path=img_path)
+        for i in range(len(lst)):
+            if lst[i] == "จำนวนเงิน" or lst[i] == "จำนวน" or lst[i] == "จำนวน:":
+                try:
+                    return f"{lst[i]}: {lst[i+1]}" 
+                except IndexError:
+                    return "Not found จำนวนเงิน"
+
+        return f"{img_path}\n Not found จำนวนเงิน"
         
-        if result["bank"] == "Kbank":
-            lst = self.read_img(img_path=img_path)
-            return lst[-6]
-        
-        elif result["bank"] == "NEXT":
-            return self.read_img(img_path=img_path)
-        
-        elif result["bank"] == "SCB":
-            return self.read_img(img_path=img_path)
+    
+
         
