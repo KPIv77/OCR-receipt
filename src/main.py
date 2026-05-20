@@ -9,7 +9,7 @@ CLASS_NAMES = ["Kbank", "NEXT", "SCB"]
 
 # Path model and image
 model_receipt = r"/home/kph/project/OCR-receipt/model/receipt_model.pth"
-image_path = r"/home/kph/project/OCR-receipt/receipt/218325_0.jpg"
+image_path = r"/home/kph/project/OCR-receipt/receipt/218643.jpg"
 model_dir = r"/home/kph/project/OCR-receipt/model"
 
 if __name__ == "__main__":
