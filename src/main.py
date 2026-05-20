@@ -9,7 +9,8 @@ CLASS_NAMES = ["Kbank", "NEXT", "SCB"]
 
 # Path model and image
 model_receipt = r"/home/kph/project/OCR-receipt/model/receipt_model.pth"
-image_path = r"/home/kph/project/OCR-receipt/receipt/218324.jpg"
+image_path = r"/home/kph/project/OCR-receipt/receipt/218325_0.jpg"
+model_dir = r"/home/kph/project/OCR-receipt/model"
 
 if __name__ == "__main__":
     
@@ -29,4 +30,14 @@ if __name__ == "__main__":
     print(result["confidence"])
 
     receipt_read = ReceiptRead()
-    print(receipt_read.bank(result))
+    
+    receipt_read = ReceiptRead(
+        lang=["th", "en"],
+        model_dir=model_dir,      
+        download_enabled=False
+    )
+    text = receipt_read.bank(
+        result=result,
+        img_path=image_path
+    )
+    print(text)
