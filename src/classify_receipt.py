@@ -29,9 +29,7 @@ class ReceiptClassifier:
     def _load_model(self, model_path: str, num_classes: int) -> nn.Module:
         
         model = models.mobilenet_v2(weights=None)
-        
         num_features = model.classifier[1].in_features
-        
         model.classifier = nn.Sequential(
             nn.Dropout(0.3),                          
             nn.Linear(num_features, num_classes)      
