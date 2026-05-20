@@ -18,17 +18,23 @@ class ReceiptRead:
 
     def bank_Kb(self, img_path: str) -> str:
         results = self.reader.readtext(img_path)
+    
         text = "\n".join([item[1] for item in results])
+        
+        text = text.replace("O", "0").replace("o", "0")
+        
         return text
     
     def bank_Sc(self, img_path: str) -> str:
         results = self.reader.readtext(img_path)
         text = "\n".join([item[1] for item in results])
+        text = text.replace("O", "0").replace("o", "0")
         return text
     
     def bank_nx(self, img_path: str) -> str:
         results = self.reader.readtext(img_path)
         text = "\n".join([item[1] for item in results])
+        text = text.replace("O", "0").replace("o", "0")
         return text
     
     # Check bank
