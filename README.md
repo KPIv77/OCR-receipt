@@ -1,5 +1,5 @@
 # OCR-receipt
-<pr>
+
 ## 🗂️ Project Structure
 ```
 OCR-receipt/
