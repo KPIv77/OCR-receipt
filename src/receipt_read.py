@@ -35,11 +35,22 @@ class ReceiptRead:
         for i in range(len(lst)):
             if lst[i] == "จำนวนเงิน" or lst[i] == "จำนวน" or lst[i] == "จำนวน:":
                 try:
-                    return f"{lst[i]}: {lst[i+1]}" 
+                    amount = lst[i+1]
+                    return amount
                 except IndexError:
                     return "Not found จำนวนเงิน"
 
         return f"{img_path}\n Not found จำนวนเงิน"
+
+    def add(self, result: dict,img_path: str) -> str:
+        
+        bank = result["bank"]
+        expense = self.bank_split(img_path=img_path)
+        
+        return {
+            "bank"  : bank,
+            "amount": expense,
+        }
         
     
 

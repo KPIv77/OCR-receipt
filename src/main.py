@@ -29,14 +29,14 @@ if __name__ == "__main__":
     print(result["bank"])
     print(result["confidence"])
 
-    receipt_read = ReceiptRead()
     
     receipt_read = ReceiptRead(
         lang=["th", "en"],
         model_dir=model_dir,      
         download_enabled=False
     )
-    text = receipt_read.bank_split(
+    text = receipt_read.add(
+        result=result,
         img_path=image_path
     )
     print(text)
