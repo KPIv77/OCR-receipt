@@ -16,36 +16,28 @@ class ReceiptRead:
             download_enabled=download_enabled
         )
 
-    def bank_Kb(self, img_path: str) -> str:
-        results = self.reader.readtext(img_path)
-    
-        text = "\n".join([item[1] for item in results])
+    def read_img(self, img_path: str) -> str:
         
-        text = text.replace("O", "0").replace("o", "0")
+        # Read image with OCR
+        results = self.reader.readtext(img_path)
         
-        return text
-    
-    def bank_Sc(self, img_path: str) -> str:
-        results = self.reader.readtext(img_path)
-        text = "\n".join([item[1] for item in results])
-        text = text.replace("O", "0").replace("o", "0")
-        return text
-    
-    def bank_nx(self, img_path: str) -> str:
-        results = self.reader.readtext(img_path)
-        text = "\n".join([item[1] for item in results])
-        text = text.replace("O", "0").replace("o", "0")
-        return text
+        # Input in list[] and replace o, O by 0  
+        value_row = [
+            word for item in results
+            for word in item[1].replace("O", "0").replace("o", "0").split()
+        ]
+        return value_row
     
     # Check bank
-    def bank(self, result: dict, img_path: str) -> str:
+    def bank_split(self, result: dict, img_path: str) -> str:
         
         if result["bank"] == "Kbank":
-            return self.bank_Kb(img_path=img_path)
+            lst = self.read_img(img_path=img_path)
+            return lst[-6]
         
         elif result["bank"] == "NEXT":
-            return self.bank_nx(img_path=img_path)
+            return self.read_img(img_path=img_path)
         
         elif result["bank"] == "SCB":
-            return self.bank_Sc(img_path=img_path)
+            return self.read_img(img_path=img_path)
         
