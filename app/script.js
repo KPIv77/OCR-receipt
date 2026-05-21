@@ -84,6 +84,7 @@ async function runOCR() {
 
         //ocrResult.textContent = data.result; 
         //ocrResult.textContent = JSON.stringify(data.result, null, 2);
+        ocrResult.classList.add('has-file');
         ocrResult.innerHTML = `
             Bank: ${data.result.bank}<br>
             Amount: ${data.result.amount}
