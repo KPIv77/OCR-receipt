@@ -1,10 +1,15 @@
+console.log("SCRIPT RUNNING");
 const dropZone  = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const fileInfo  = document.getElementById('fileInfo');
 
+const ocrResult = document.getElementById("ocrResult");
+
 // Show file name when user picks via browser dialog
 fileInput.addEventListener('change', () => {
     showFileName(fileInput.files[0]);
+    console.log(file);
+    console.log(fileInput.files);
 });
 
 // Drag-over: add highlight class 
@@ -49,12 +54,39 @@ function formatSize(bytes) {
 }
 
 // Upload handler (replace with real fetch/form logic)
-function handleUpload() {
+async function runOCR() {
+
     const file = fileInput.files[0];
+
     if (!file) {
-    alert('Please select a file first.');
-    return;
+        alert('Please select a file first.');
+        return;
     }
-    // TODO: ส่ง FormData ไปยัง backend ของคุณ
-    alert(`Uploading: ${file.name}`);
+    console.log("running ocr...");
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+
+    try {
+
+        const response = await fetch("/ocr", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        //console.log(JSON.stringify(data, null, 2));
+        //console.log(data);
+        console.log(data.result);
+
+        ocrResult.textContent = data.result; 
+
+    } catch (error) {
+
+        console.error(error);
+
+        //alert("Upload failed");
+    }
 }
