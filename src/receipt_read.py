@@ -32,8 +32,21 @@ class ReceiptRead:
     def bank_split(self,img_path: str) -> str:
     
         lst = self.read_img(img_path=img_path)
+
+        # Define keywords to find the amount of money in the receipt
+        keywords = {
+            "จำนวนเงิน",
+            "จำนวนเงิน:",
+            "จานวนเงา",
+            "จานวนเงา:",
+            "จำนวน",
+            "จำนวน:",
+            "จานวน",
+            "จานวน:"
+        }
+        
         for i in range(len(lst)):
-            if lst[i] == "จำนวนเงิน" or lst[i] == "จำนวน" or lst[i] == "จำนวน:":
+            if lst[i] in keywords:
                 try:
                     amount = lst[i+1]
                     return amount
