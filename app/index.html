@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Read Receipt – Upload</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./stlye.css">
+  <link rel="stylesheet" href="/static/style.css"> 
 
 </head>
 <body>
@@ -27,16 +27,17 @@
 
     <!-- ── Selected file name ───────────────────────────── -->
     <p class="file-info" id="fileInfo">No file selected</p>
+    <p class="file-info" id="ocrResult">Waiting OCR result.</p> 
 
-    <!-- ── Upload button ────────────────────────────────── -->
-    <button class="btn-upload" id="uploadBtn" onclick="handleUpload()">
-      ↑ &nbsp; Upload File
+    <!-- ── run OCR button ────────────────────────────────── -->
+    <button class="btn-upload" id="uploadBtn" onclick="runOCR()">
+      Read File
     </button>
 
     <p class="footer-note">Supported: PNG, JPG, PDF &nbsp;·&nbsp; Max 10 MB</p>
   </div>
 
-  <script src="script.js"></script>
+  <script src="/static/script.js"></script> 
 
 </body>
 </html>
