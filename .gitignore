@@ -1,6 +1,7 @@
 model/
 venv/
 receipt/
+postgreSQL/
 
 src/__pycache__/
 src/test.py
