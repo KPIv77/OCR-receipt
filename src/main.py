@@ -35,8 +35,9 @@ def run_ocr(img_path=image_path):
     )
     return text
 
+"""
 if __name__ == "__main__":
     
     text = run_ocr()
     print(text)
-    
+"""    
