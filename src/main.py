@@ -31,7 +31,7 @@ def run_ocr(img_path):
     )
     text = receipt_read.add(
         result=result,
-        img_path=image_path
+        img_path=img_path
     )
     return text
 
