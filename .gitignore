@@ -1,3 +1,4 @@
+*env
 model/
 venv/
 receipt/
@@ -6,4 +7,6 @@ postgreSQL/
 src/__pycache__/
 src/test.py
 
-src/API
+src/API/server_2.py
+src/API/DB.py
+src/API/__pycache__/
