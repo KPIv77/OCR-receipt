@@ -1,12 +1,29 @@
 from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+
 import sys, os, shutil
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
 
 from main import run_ocr
 
-
-
 app = FastAPI()
+
+# serve static files
+app.mount(
+    "/static",
+    StaticFiles(directory="../app"),
+    name="static"
+)
+
+# serve index.html at root
+# เปิดหน้าเว็บ
+@app.get("/")
+def home():
+    return FileResponse("../app/index.html")
 
 @app.post("/ocr")
 def ocr_upload(file: UploadFile = File(...)):
@@ -22,9 +39,10 @@ def ocr_upload(file: UploadFile = File(...)):
     os.remove(temp_path)
     
     return {"result": text}
-
+"""
 @app.get("/")
 def root():
     # Call run_ocr() to get the text result
     text = run_ocr() 
     return {"message": text}
+"""
