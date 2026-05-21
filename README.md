@@ -1,6 +1,6 @@
 # OCR-receipt
 
-## 🗂️ Project Structure
+## Project Structure
 ```
 OCR-receipt/
 │
