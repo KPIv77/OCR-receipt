@@ -12,8 +12,7 @@ model_receipt = r"/home/kph/project/OCR-receipt/model/receipt_model.pth"
 image_path = r"/home/kph/project/OCR-receipt/receipt/218326_0.jpg"
 model_dir = r"/home/kph/project/OCR-receipt/model"
 
-if __name__ == "__main__":
-    
+def run_ocr(img_path=image_path):
     # Config file classify_receipt.py 
     classifier = ReceiptClassifier(
         model_path=model_receipt,
@@ -22,14 +21,9 @@ if __name__ == "__main__":
         device=DEVICE,
     )
 
-    result = classifier.predict(image_path)
-
-    # Print check
+    result = classifier.predict(img_path)
     print(result)
-    print(result["bank"])
-    print(result["confidence"])
 
-    
     receipt_read = ReceiptRead(
         lang=["th", "en"],
         model_dir=model_dir,      
@@ -39,4 +33,10 @@ if __name__ == "__main__":
         result=result,
         img_path=image_path
     )
+    return text
+
+if __name__ == "__main__":
+    
+    text = run_ocr()
     print(text)
+    
