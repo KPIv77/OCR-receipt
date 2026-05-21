@@ -3,4 +3,6 @@ venv/
 receipt/
 
 src/__pycache__/
+src/test.py
 
+src/API
