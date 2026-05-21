@@ -62,6 +62,7 @@ async function runOCR() {
         alert('Please select a file first.');
         return;
     }
+    ocrResult.textContent = "Processing OCR...";
     console.log("running ocr...");
 
     const formData = new FormData();
@@ -81,12 +82,16 @@ async function runOCR() {
         //console.log(data);
         console.log(data.result);
 
-        ocrResult.textContent = data.result; 
+        //ocrResult.textContent = data.result; 
+        //ocrResult.textContent = JSON.stringify(data.result, null, 2);
+        ocrResult.innerHTML = `
+            Bank: ${data.result.bank}<br>
+            Amount: ${data.result.amount}
+        `;
 
     } catch (error) {
 
         console.error(error);
-
-        //alert("Upload failed");
+        alert("Upload failed");
     }
 }
