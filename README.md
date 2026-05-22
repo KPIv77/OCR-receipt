@@ -5,10 +5,14 @@
 OCR-receipt/
 │
 ├── README.md
-├── app/
-│   ├──index.html
-│   ├──style.css
-│   └──script.js
+├── App/
+│   └──src/
+│       ├──App.tsx 
+│       ├──App.css
+│       ├──index.css
+│       ├──main.tsx
+│       └──Type/
+│           └──type.ts/
 ├── model/
 │   ├──craft_mlt_25k.pth 
 │   ├──thai.pth
