@@ -10,3 +10,8 @@ src/test.py
 src/API/server_2.py
 src/API/DB.py
 src/API/__pycache__/
+
+App/node_modules/
+App/eslint.config.js
+App/README.md
+App/src/assets/
