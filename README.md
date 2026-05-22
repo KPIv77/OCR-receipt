@@ -1,10 +1,15 @@
 # OCR-receipt
+![Python](...)
 
 ## Project Structure
 ```
 OCR-receipt/
 │
 ├── README.md
+├── app/
+│   ├──index.html
+│   ├──style.css
+│   └──script.js
 ├── model/
 │   ├──craft_mlt_25k.pth 
 │   ├──thai.pth
