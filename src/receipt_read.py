@@ -61,8 +61,8 @@ class ReceiptRead:
         expense = self.bank_split(img_path=img_path)
         
         return {
-            "bank"  : bank,
-            "amount": expense,
+            "Bank"  : bank,
+            "Expense": expense,
         }
         
     
