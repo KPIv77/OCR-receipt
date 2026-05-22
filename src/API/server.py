@@ -39,10 +39,3 @@ def ocr_upload(file: UploadFile = File(...)):
     os.remove(temp_path)
     
     return {"result": text}
-"""
-@app.get("/")
-def root():
-    # Call run_ocr() to get the text result
-    text = run_ocr() 
-    return {"message": text}
-"""
