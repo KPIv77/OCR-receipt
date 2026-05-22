@@ -1,5 +1,4 @@
 # OCR-receipt
-![label](https://img.shields.io/badge/<TEXT>-<COLOR>?style=for-the-badge)
 
 ## Project Structure
 ```
