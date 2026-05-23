@@ -113,7 +113,7 @@ function App() {
     if (ocrResult) return (
       <>
         <strong>Bank:</strong> {ocrResult.bank}
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <br />
         <strong>Amount:</strong> {ocrResult.amount}
       </>
     )
@@ -175,7 +175,7 @@ function App() {
             prototype that always has #ocrResult in the DOM.
       */}
       <p
-        className={`ocrResult${ocrResult ? ' has-file' : ''}`}
+        className={`file-info${ocrResult ? ' has-file' : ''}`}
         id="ocrResult"
       >
         {getOcrDisplayText()}
