@@ -175,7 +175,7 @@ function App() {
             prototype that always has #ocrResult in the DOM.
       */}
       <p
-        className={`file-info${ocrResult ? ' has-file' : ''}`}
+        className={`ocrResult${ocrResult ? ' has-file' : ''}`}
         id="ocrResult"
       >
         {getOcrDisplayText()}
