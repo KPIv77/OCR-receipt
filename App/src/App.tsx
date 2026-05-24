@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import type { OcrResult, ApiResponse } from './Type/type'
+import type { OcrResult, ApiResponse } from './api/type'
 import './App.css'
 
 function App() {
@@ -103,6 +103,14 @@ function App() {
         }
     }
 
+    const handleAddd = () => {
+
+        if (!date) {
+            alert("Please select date");
+            return;
+        }
+    }
+
     // ── OCR Result Text ────────────────────────────────────────────────────────
 
     /**
@@ -197,7 +205,7 @@ function App() {
                 </div>
                 
                 <div className={`add-info${ocrResult ? ' read-done' : ''}`}>
-                    <button className="btn">
+                    <button className="btn" onClick={handleAddd}>
                         + Add data
                     </button>
                 </div>
