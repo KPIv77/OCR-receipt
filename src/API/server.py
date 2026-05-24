@@ -16,7 +16,9 @@ app = FastAPI()
 # allow React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -38,7 +40,7 @@ def get_users():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT date, bank, detail
+        SELECT date, bank, detail, expenses
         FROM "db-main"
     """)
 
@@ -50,7 +52,8 @@ def get_users():
         lst.append({
             "date": row[0],
             "bank": row[1],
-            "detail": row[2]
+            "detail": row[2],
+            "expenses": row[3]
         })
 
     cursor.close()
@@ -74,6 +77,31 @@ def ocr_upload(file: UploadFile = File(...)):
         "result": text
     }
 
-@app.post("/add")
-def add_to():
-    pass
+@app.post("/receipt")
+async def create_receipt(data: Receipt):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO "db-main"
+        (date, bank, detail,income, expenses)
+
+        VALUES (%s, %s, %s, %s, %s)
+    """, 
+    (
+        data.date,
+        data.bank,
+        data.detail,
+        data.income,
+        data.expenses
+    ))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return {
+        "message": "success"
+    }

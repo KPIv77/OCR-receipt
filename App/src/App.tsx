@@ -1,6 +1,7 @@
-import { useState, useRef, useCallback } from 'react'
-import type { OcrResult, ApiResponse } from './api/type'
-import './App.css'
+import { useState, useRef, useCallback } from "react"
+import type { OcrResult, ApiResponse } from "./api/type"
+import { createReceipt } from "./api/receiptApi";
+import "./App.css"
 
 function App() {
     // ── State ──────────────────────────────────────────────────────────────────
@@ -15,6 +16,9 @@ function App() {
 
     // Track loading state while the request is in-flight
     const [isLoading, setIsLoading] = useState(false)
+
+    const [isSaving, setIsSaving] = useState(false);
+    const [isDone, setIsDone] = useState(false);
 
     // Toggle the "dragover" CSS class on the drop zone
     const [isDragOver, setIsDragOver] = useState(false)
@@ -103,13 +107,39 @@ function App() {
         }
     }
 
-    const handleAddd = () => {
+    const handleAddd = async () => {
 
         if (!date) {
             alert("Please select date");
             return;
         }
-    }
+
+        if (!ocrResult) {
+            alert("Value receipt not found.")
+            return;
+        }
+
+        try {
+            await createReceipt({
+                date: date,
+                bank: ocrResult.bank,
+                detail: "",
+                income: 0,
+                expenses: ocrResult.amount,
+            });
+
+            //console.log("Success");
+            setIsDone(true);
+
+        } catch (error) {
+            console.error(error);
+        
+        }finally {
+
+            setIsSaving(false);
+        
+        }
+    };
 
     // ── OCR Result Text ────────────────────────────────────────────────────────
 
@@ -205,8 +235,19 @@ function App() {
                 </div>
                 
                 <div className={`add-info${ocrResult ? ' read-done' : ''}`}>
-                    <button className="btn" onClick={handleAddd}>
-                        + Add data
+                    <button 
+                        className="btn" 
+                        onClick={handleAddd}
+                        disabled={isSaving}
+                        
+                    >
+                        {isSaving
+                            ? 'Adding...'
+                            : isDone
+                                ? 'Add done'
+                                : '+ Add data'
+                        }
+                                                
                     </button>
                 </div>
 
