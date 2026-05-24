@@ -58,9 +58,13 @@ h1 {
     line-height: 1.1;
     color: var(--text);
 }
-
-h1 span { 
-    color: var(--accent); 
+.add-date {
+    text-align: right;
+}
+.add-date input {
+    margin-bottom: 5px;
+    border-radius: var(--radius);
+    text-align: center;
 }
 
 /* ─── Drop Zone ─────────────────────────────────────── */
@@ -119,6 +123,17 @@ h1 span {
     cursor: pointer;
 }
 
+.info-read {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.inforeceipt {
+    flex: 1;
+}
+
 /* ─── File name display ─────────────────────────────── */
 .file-info {
     color: var(--muted);
@@ -127,12 +142,14 @@ h1 span {
     transition: color 0.2s;
 }
 
+.add-info {
+    margin-bottom: 1.25rem;
+}
+
 .file-info.has-file { color: var(--accent); }
 
 /* ─── Upload Button ─────────────────────────────────── */
-.btn-upload {
-    width: 100%;
-    margin-top: 40px;
+.btn {
     padding: 0.85rem;
     background: var(--accent);
     color: #ffffff;
@@ -142,6 +159,15 @@ h1 span {
     border-radius: var(--radius);
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
+}
+
+.btn-add {
+    width: 40%;
+}
+
+.btn-upload {
+    width: 100%;
+    margin-top: 10px;
 }
 
 .btn-upload:hover  { background: var(--accent-dim); }

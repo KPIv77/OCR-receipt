@@ -4,6 +4,9 @@ import './App.css'
 
 function App() {
   // ── State ──────────────────────────────────────────────────────────────────
+
+  // Set date
+  const [date, setDate] = useState("");
   // Store the file selected or dropped by the user
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
@@ -109,94 +112,113 @@ function App() {
    *   - Result available    → "Bank: ... | Amount: ..."
    */
   const getOcrDisplayText = (): React.ReactNode => {
-    if (isLoading) return 'Processing OCR…'
-    if (ocrResult) return (
-      <>
-        <strong>Bank:</strong> {ocrResult.bank}
-        <br />
-        <strong>Amount:</strong> {ocrResult.amount}
-      </>
-    )
-    return 'Detail receipt.'  // Placeholder matching the original HTML prototype
-  }
+      if (isLoading) return 'Processing OCR…'
+      if (ocrResult) return (
+         <>
+         <strong>Bank:</strong> {ocrResult.bank}
+         <br />
+         <strong>Amount:</strong> {ocrResult.amount}
+         </>
+      )
+      return 'Detail receipt.'  // Placeholder matching the original HTML prototype
+   }
 
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="card">
+      <div className="card">
 
-      {/* ── Header ── Text matches the original HTML prototype exactly */}
-      <header>
-        <div className="label-tag">DEMO Read Receipt</div>
-        <h1>Upload receipt<span></span></h1>
-      </header>
+         {/* ── Header ── Text matches the original HTML prototype exactly */}
+         <header>
+            <div className="label-tag">DEMO Read Receipt</div>
+            <h1>Upload receipt</h1>
+         </header>
 
-      {/* ── Drop Zone ──
-            The <input> is stacked over the entire zone via CSS
-            (position: absolute; inset: 0; opacity: 0), so clicking
-            anywhere inside the zone opens the file dialog.
-      */}
-      <div
-        className={`drop-zone${isDragOver ? ' dragover' : ''}`}
-        id="dropZone"
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <input
-          type="file"
-          id="fileInput"
-          name="file"
-          accept="image/*,.pdf"
-          ref={fileInputRef}
-          onChange={handleInputChange}
-        />
+         <div className="add-date">
+            <input
+               type="date"
+               value={date}
+               onChange={(e) => setDate(e.target.value)}
+            />
 
-        {/* Copy text matches the original HTML prototype */}
-        <p className="drop-title">Drop your file here</p>
-        <p className="drop-sub">or <span>browse to upload</span></p>
+         </div>
+
+         {/* ── Drop Zone ──
+               The <input> is stacked over the entire zone via CSS
+               (position: absolute; inset: 0; opacity: 0), so clicking
+               anywhere inside the zone opens the file dialog.
+         */}
+         <div
+         className={`drop-zone${isDragOver ? ' dragover' : ''}`}
+         id="dropZone"
+         onDragOver={handleDragOver}
+         onDragLeave={handleDragLeave}
+         onDrop={handleDrop}
+         >
+         <input
+            type="file"
+            id="fileInput"
+            name="file"
+            accept="image/*,.pdf"
+            ref={fileInputRef}
+            onChange={handleInputChange}
+         />
+
+         {/* Copy text matches the original HTML prototype */}
+         <p className="drop-title">Drop your file here</p>
+         <p className="drop-sub">or <span>browse to upload</span></p>
+         </div>
+
+         {/* ── File Info ──
+               Shows the file name once selected, or "No file selected" otherwise.
+               The "has-file" class changes the colour via CSS.
+         */}
+         <p
+         className={`file-info${selectedFile ? ' has-file' : ''}`}
+         id="fileInfo"
+         >
+         {selectedFile
+            ? `${selectedFile.name}  (${formatSize(selectedFile.size)})`
+            : 'No file selected'}
+         </p>
+
+         {/* ── OCR Result ──
+               Renders the placeholder / loading text / result inside the same element
+               (no conditional mounting) to stay consistent with the original HTML
+               prototype that always has #ocrResult in the DOM.
+         */}
+         <div className="info-read">
+            <div className="inforeceipt">
+               <p
+                  className={`file-info${ocrResult ? ' has-file' : ''}`}
+                  id="ocrResult"
+               >
+                  {getOcrDisplayText()}
+               </p>
+            </div>
+            
+            <div className="add-info">
+               <button className="btn">
+                  + Add data
+               </button>
+            </div>
+
+         </div>
+         {/* ── Run OCR Button ── Label "Read File" matches the original HTML prototype */}
+         <button
+         className="btn btn-upload"
+         id="uploadBtn"
+         onClick={runOCR}
+         disabled={isLoading}
+         >
+         {isLoading ? 'Processing…' : 'Read receipt'}
+         </button>
+
+         {/* ── Footer ── Text matches the original HTML prototype */}
+         <p className="footer-note">
+         Supported: PNG, JPG, PDF &nbsp;·&nbsp; Max 10 MB
+         </p>
+
       </div>
-
-      {/* ── File Info ──
-            Shows the file name once selected, or "No file selected" otherwise.
-            The "has-file" class changes the colour via CSS.
-      */}
-      <p
-        className={`file-info${selectedFile ? ' has-file' : ''}`}
-        id="fileInfo"
-      >
-        {selectedFile
-          ? `${selectedFile.name}  (${formatSize(selectedFile.size)})`
-          : 'No file selected'}
-      </p>
-
-      {/* ── OCR Result ──
-            Renders the placeholder / loading text / result inside the same element
-            (no conditional mounting) to stay consistent with the original HTML
-            prototype that always has #ocrResult in the DOM.
-      */}
-      <p
-        className={`file-info${ocrResult ? ' has-file' : ''}`}
-        id="ocrResult"
-      >
-        {getOcrDisplayText()}
-      </p>
-
-      {/* ── Run OCR Button ── Label "Read File" matches the original HTML prototype */}
-      <button
-        className="btn-upload"
-        id="uploadBtn"
-        onClick={runOCR}
-        disabled={isLoading}
-      >
-        {isLoading ? 'Processing…' : 'Read File'}
-      </button>
-
-      {/* ── Footer ── Text matches the original HTML prototype */}
-      <p className="footer-note">
-        Supported: PNG, JPG, PDF &nbsp;·&nbsp; Max 10 MB
-      </p>
-
-    </div>
   )
 }
 
