@@ -134,16 +134,21 @@ h1 {
     flex: 1;
 }
 
+.add-info {
+    margin-bottom: 1.25rem;
+    display: none;
+}
+
+.add-info.read-done {
+    display: block;
+}
+
 /* ─── File name display ─────────────────────────────── */
 .file-info {
     color: var(--muted);
     margin-bottom: 1.25rem;
     min-height: 1.2em;
     transition: color 0.2s;
-}
-
-.add-info {
-    margin-bottom: 1.25rem;
 }
 
 .file-info.has-file { color: var(--accent); }
