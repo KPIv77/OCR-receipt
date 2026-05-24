@@ -1,4 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
+from API.DB import get_connection
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 import sys, os, shutil
@@ -20,6 +22,42 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class Receipt(BaseModel):
+    date: str
+    bank: str
+    detail: str
+    income: int
+    expenses: int
+
+
+
+@app.get("/list")
+def get_users():
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT date, bank, detail
+        FROM "db-main"
+    """)
+
+    rows = cursor.fetchall()
+
+    lst = []
+
+    for row in rows:
+        lst.append({
+            "date": row[0],
+            "bank": row[1],
+            "detail": row[2]
+        })
+
+    cursor.close()
+    conn.close()
+
+    return lst
+
 @app.post("/ocr")
 def ocr_upload(file: UploadFile = File(...)):
 
@@ -35,3 +73,7 @@ def ocr_upload(file: UploadFile = File(...)):
     return {
         "result": text
     }
+
+@app.post("/add")
+def add_to():
+    pass
