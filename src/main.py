@@ -1,9 +1,10 @@
 import torch
+import os
+
+import download_model
+
 from classify_receipt import ReceiptClassifier
 from receipt_read import ReceiptRead
-
-import os
-import download_model
 
 
 # Config
