@@ -1,15 +1,12 @@
 from fastapi import FastAPI, UploadFile, File
-from API.DB import get_connection
+from DB import get_connection
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-import sys, os, shutil
+import os
+import shutil
 
-sys.path.append(
-    os.path.join(os.path.dirname(__file__), "..")
-)
-
-from main import run_ocr
+from src.main import run_ocr
 
 app = FastAPI()
 
