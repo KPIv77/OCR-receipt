@@ -1,5 +1,5 @@
 from fastapi import FastAPI, UploadFile, File
-from DB import get_connection
+from .DB import get_connection
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
