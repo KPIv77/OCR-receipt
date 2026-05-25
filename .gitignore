@@ -7,7 +7,7 @@ postgreSQL/
 src/__pycache__/
 src/test.py
 
-src/API/server_2.py
+server_2.py
 src/API/__pycache__/
 
 
