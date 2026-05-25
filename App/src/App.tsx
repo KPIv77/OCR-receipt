@@ -87,7 +87,7 @@ function App() {
         formData.append('file', selectedFile)
 
         try {
-        const response = await fetch('/ocr', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/ocr`, {
             method: 'POST',
             body: formData,
         })
