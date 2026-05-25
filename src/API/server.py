@@ -14,8 +14,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "https://ocr-receipt-ecru.vercel.app/"
+        "https://ocr-receipt-ecru.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
