@@ -6,10 +6,13 @@ postgreSQL/
 
 src/__pycache__/
 src/test.py
+src/download_model.py
 
 src/API/server_2.py
 src/API/DB.py
 src/API/__pycache__/
+
+
 app/
 
 App/node_modules/
