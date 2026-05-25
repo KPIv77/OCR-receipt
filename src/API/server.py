@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import shutil
 
-from ..main import run_ocr
+from main import run_ocr
 
 app = FastAPI()
 
