@@ -29,33 +29,28 @@ model_dir = os.path.join(
     BASE_DIR,
     "model"
 )
+CLASSIFIER = ReceiptClassifier(
+    model_path=model_receipt,
+    class_names=CLASS_NAMES,
+    img_size=IMG_SIZE,
+    device=DEVICE,
+)
 
-def run_ocr(img_path):
+RECEIPT_READER = ReceiptRead(
+    lang=["th", "en"],
+    model_dir=model_dir,
+    download_enabled=False
+)
+
+def run_ocr(img_path: str):
     # Config file classify_receipt.py 
-    classifier = ReceiptClassifier(
-        model_path=model_receipt,
-        class_names=CLASS_NAMES,
-        img_size=IMG_SIZE,
-        device=DEVICE,
-    )
-
-    result = classifier.predict(img_path)
+    result = CLASSIFIER.predict(img_path)
     print(result)
 
-    receipt_read = ReceiptRead(
-        lang=["th", "en"],
-        model_dir=model_dir,      
-        download_enabled=False
-    )
-    text = receipt_read.add(
+    text = RECEIPT_READER.add(
         result=result,
         img_path=img_path
     )
     return text
 
-"""
-if __name__ == "__main__":
-    
-    text = run_ocr()
-    print(text)
-"""    
+  
