@@ -118,6 +118,8 @@ function App() {
             alert("Value receipt not found.")
             return;
         }
+        setIsSaving(true);
+        setIsDone(false);
 
         try {
             await createReceipt({
