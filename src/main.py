@@ -1,8 +1,6 @@
 import torch
 import os
 
-import download_model
-
 from classify_receipt import ReceiptClassifier
 from receipt_read import ReceiptRead
 
@@ -18,17 +16,9 @@ CLASS_NAMES = ["Kbank", "NEXT", "SCB"]
 #model_dir = r"/home/kph/project/OCR-receipt/model"
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+model_receipt = os.path.join(BASE_DIR, "model", "receipt_model.pth")
+model_dir = os.path.join(BASE_DIR, "model")
 
-model_receipt = os.path.join(
-    BASE_DIR,
-    "model",
-    "receipt_model.pth"
-)
-
-model_dir = os.path.join(
-    BASE_DIR,
-    "model"
-)
 CLASSIFIER = ReceiptClassifier(
     model_path=model_receipt,
     class_names=CLASS_NAMES,
