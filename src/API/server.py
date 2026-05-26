@@ -37,8 +37,8 @@ def get_users():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT date, bank, detail, expenses
-        FROM "db-main"
+        SELECT Date, Bank, Detail, Expenses
+        FROM "revenue_db"
     """)
 
     rows = cursor.fetchall()
@@ -47,10 +47,10 @@ def get_users():
 
     for row in rows:
         lst.append({
-            "date": row[0],
-            "bank": row[1],
-            "detail": row[2],
-            "expenses": row[3]
+            "Date": row[0],
+            "Bank": row[1],
+            "Detail": row[2],
+            "Expenses": row[3]
         })
 
     cursor.close()
@@ -81,7 +81,7 @@ async def create_receipt(data: Receipt):
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO "db-main"
+        INSERT INTO "revenue_db"
         (Date, Bank, Detail, Income, Expenses)
 
         VALUES (%s, %s, %s, %s, %s)
