@@ -82,7 +82,7 @@ async def create_receipt(data: Receipt):
 
     cursor.execute("""
         INSERT INTO "db-main"
-        (date, bank, detail,income, expenses)
+        (Date, Bank, Detail, Income, Expenses)
 
         VALUES (%s, %s, %s, %s, %s)
     """, 
