@@ -1,5 +1,8 @@
 # OCR-receipt
-## Core concept
+## Tech Stack
+React • TypeScript • Python • Pytorch • OCR 
+
+
 ## Project Structure
 ```
 OCR-receipt/
