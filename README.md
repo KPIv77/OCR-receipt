@@ -5,13 +5,16 @@
 OCR-receipt/
 │
 ├── README.md
+├── Dockerfile
+├── requirements.txt
 ├── App/
 │   └──src/
 │       ├──App.tsx 
 │       ├──App.css
 │       ├──index.css
 │       ├──main.tsx
-│       └──Type/
+│       └──api/
+│           ├──receiptApi.ts 
 │           └──type.ts/
 ├── model/
 │   ├──craft_mlt_25k.pth 
