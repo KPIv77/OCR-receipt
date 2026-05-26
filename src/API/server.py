@@ -28,7 +28,7 @@ class Receipt(BaseModel):
     income: int
     expenses: int
 
-
+"""
 
 @app.get("/list")
 def get_users():
@@ -36,10 +36,10 @@ def get_users():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
+    cursor.execute(
         SELECT Date, Bank, Detail, Expenses
         FROM "revenue_db"
-    """)
+    )
 
     rows = cursor.fetchall()
 
@@ -57,6 +57,7 @@ def get_users():
     conn.close()
 
     return lst
+"""
 
 @app.post("/ocr")
 def ocr_upload(file: UploadFile = File(...)):
@@ -82,7 +83,7 @@ async def create_receipt(data: Receipt):
 
     cursor.execute("""
         INSERT INTO "revenue_db"
-        (Date, Bank, Detail, Income, Expenses)
+        ("Date", "Bank", "Detail", "Income", "Expenses")
 
         VALUES (%s, %s, %s, %s, %s)
     """, 
