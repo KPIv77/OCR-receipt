@@ -1,5 +1,5 @@
 # OCR-receipt
-
+## Core concept
 ## Project Structure
 ```
 OCR-receipt/
