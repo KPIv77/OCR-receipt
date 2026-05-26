@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+"""
 DB_CONFIG = {
     "host": os.getenv("DB_HOST"),
     "port": os.getenv("DB_PORT"),
@@ -14,3 +14,8 @@ DB_CONFIG = {
 
 def get_connection():
     return psycopg2.connect(**DB_CONFIG)
+"""
+
+def get_connection():
+    # ใช้ DATABASE_URL จาก Supabase โดยตรง
+    return psycopg2.connect(os.getenv("DATABASE_URL"))
