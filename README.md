@@ -4,7 +4,7 @@
 
 OCR-receipt for extracting, classifying, and managing information from Thai bank receipts using Optical Character Recognition (OCR) and deep learning. It features a Python backend for OCR and classification, and a React/TypeScript frontend for user interaction.
 
-## **[🌐 Demo Website](https://ocr-receipt-ecru.vercel.app/)**
+## [🌐 Demo Website](https://ocr-receipt-ecru.vercel.app/)
 
 ---
 
