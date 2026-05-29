@@ -1,52 +1,123 @@
-# OCR-receipt
-## Tech Stack
-React • TypeScript • Python • Pytorch • OCR 
 
+# OCR-receipt
+
+OCR-receipt for extracting, classifying, and managing information from Thai bank receipts using Optical Character Recognition (OCR) and deep learning. It features a Python backend for OCR and classification, and a React/TypeScript frontend for user interaction.
+
+---
+
+## Tech Stack
+- **Frontend:** React, TypeScript, Vite
+- **Backend:** Python, FastAPI
+- **Deep Learning:** PyTorch, torchvision
+- **OCR:** EasyOCR
+- **Database:** PostgreSQL
+- **Other:** Docker, REST API
+
+---
+
+## Features
+- Upload receipt images and extract information (bank, amount, etc.)
+- Classify receipts by bank using a trained PyTorch model
+- OCR for Thai/English text using EasyOCR
+- Store and manage receipt data in a PostgreSQL database
+- Modern web UI with React
+
+---
 
 ## Project Structure
 ```
 OCR-receipt/
 │
-├── README.md
-├── Dockerfile
-├── requirements.txt
-├── App/
-│   └──src/
-│       ├──App.tsx 
-│       ├──App.css
-│       ├──index.css
-│       ├──main.tsx
-│       └──api/
-│           ├──receiptApi.ts 
-│           └──type.ts/
-├── model/
-│   ├──craft_mlt_25k.pth 
-│   ├──thai.pth
-│   └──receipt_model.pth
-├── src/
-│   ├──main.py 
-│   ├──classify_receipt.py
-│   └──receipt_read.py
-└── receipt/
+├── README.md                # Project documentation
+├── Dockerfile               # Containerization for backend
+├── requirements.txt         # Python dependencies
+├── server_2.py              # FastAPI backend server
+├── App/                     # Frontend (React/TypeScript)
+│   ├── src/
+│   │   ├── App.tsx
+│   │   ├── api/receiptApi.ts
+│   │   └── ...
+│   └── ...
+├── model/                   # Pretrained models for OCR/classification
+│   ├── craft_mlt_25k.pth
+│   ├── thai.pth
+│   └── receipt_model.pth
+├── src/                     # Backend source code
+│   ├── main.py              # Entry point for OCR/classification
+│   ├── classify_receipt.py  # Receipt bank classifier
+│   ├── receipt_read.py      # OCR and info extraction
+│   └── API/                 # FastAPI endpoints
+│       ├── DB.py            # Database connection
+│       └── server.py        # API routes
+├── postgreSQL/              # Docker Compose for PostgreSQL
+│   └── docker-compose.yml
+└── receipt/                 # Example/test receipt images
 ```
 
-## Work Flow
+---
 
-### main .py
-```
-- Set path model and image receipt 
+## Backend Overview
+- **main.py:** Loads models, provides `run_ocr()` for image classification and OCR.
+- **classify_receipt.py:** Loads a PyTorch model to classify the bank from a receipt image.
+- **receipt_read.py:** Uses EasyOCR to extract text and parse amount/bank info.
+- **API/server.py & server_2.py:** FastAPI endpoints for uploading images, adding/listing receipts, and integrating with the database.
+
+## Frontend Overview
+- Located in `App/` (React + TypeScript)
+- Allows users to upload receipt images, view extracted data, and interact with the backend API.
+
+---
+
+## Setup & Usage
+
+### 1. Clone the repository
+```bash
+git clone <repo-url>
+cd OCR-receipt
 ```
 
-### classify_receipt.py
-```
-- Classify receipt bank by model receipt_model.pth
+### 2. Python Environment & Dependencies
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### receipt_read.py
+### 3. Start PostgreSQL (optional: Docker Compose)
+```bash
+cd postgreSQL
+docker-compose up -d
 ```
-- Use model "craft_mlt_25k.pth" and "thai.pth"
-- Read info of receipt.
+
+### 4. Run Backend Server
+```bash
+uvicorn server_2.py:app --reload
 ```
+
+### 5. Frontend Setup
+```bash
+cd App
+npm install
+npm run dev
+```
+
+---
+
+## Example API Endpoints
+- `POST /ocr` — Upload receipt image, returns extracted info
+- `POST /add` — Add receipt data to database
+- `GET /list` — List all receipts
+
+---
+
+## Requirements
+See `requirements.txt` for Python dependencies, including:
+- fastapi, uvicorn, torch, torchvision, easyocr, opencv-python-headless, numpy, pillow, python-multipart, gdown, python-dotenv, psycopg2-binary, requests
+
+---
+
+## License
+MIT
 
 
 
