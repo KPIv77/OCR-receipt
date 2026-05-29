@@ -60,7 +60,7 @@ OCR-receipt/
 - **main.py:** Loads models, provides `run_ocr()` for image classification and OCR.
 - **classify_receipt.py:** Loads a PyTorch model to classify the bank from a receipt image.
 - **receipt_read.py:** Uses EasyOCR to extract text and parse amount/bank info.
-- **API/server.py & server_2.py:** FastAPI endpoints for uploading images, adding/listing receipts, and integrating with the database.
+- **API/server:** FastAPI endpoints for uploading images, adding/listing receipts, and integrating with the database.
 
 ## Frontend Overview
 - Located in `App/` (React + TypeScript)
