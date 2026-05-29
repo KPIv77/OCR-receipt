@@ -1,7 +1,10 @@
 
 # OCR-receipt
 
+
 OCR-receipt for extracting, classifying, and managing information from Thai bank receipts using Optical Character Recognition (OCR) and deep learning. It features a Python backend for OCR and classification, and a React/TypeScript frontend for user interaction.
+
+**[🌐 Demo Website](ocr-receipt-ecru.vercel.app)**
 
 ---
 
@@ -68,41 +71,6 @@ OCR-receipt/
 
 ---
 
-## Setup & Usage
-
-### 1. Clone the repository
-```bash
-git clone <repo-url>
-cd OCR-receipt
-```
-
-### 2. Python Environment & Dependencies
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-### 3. Start PostgreSQL (optional: Docker Compose)
-```bash
-cd postgreSQL
-docker-compose up -d
-```
-
-### 4. Run Backend Server
-```bash
-uvicorn server_2.py:app --reload
-```
-
-### 5. Frontend Setup
-```bash
-cd App
-npm install
-npm run dev
-```
-
----
-
 ## Example API Endpoints
 - `POST /ocr` — Upload receipt image, returns extracted info
 - `POST /add` — Add receipt data to database
@@ -115,9 +83,6 @@ See `requirements.txt` for Python dependencies, including:
 - fastapi, uvicorn, torch, torchvision, easyocr, opencv-python-headless, numpy, pillow, python-multipart, gdown, python-dotenv, psycopg2-binary, requests
 
 ---
-
-## License
-MIT
 
 
 
